@@ -16,7 +16,7 @@ function timeTranslate(hourInt) {
 }
 
 const seattleStore = {
-  storeName: 'Seattle',
+  city: 'Seattle',
   minCustomers: 23,
   maxCustomers: 65,
   avgCookiesPerCustomer: 6.3,
@@ -42,7 +42,7 @@ const seattleStore = {
 };
 
 const tokyoStore = {
-  storeName: 'Tokyo',
+  city: 'Tokyo',
   minCustomers: 3,
   maxCustomers: 24,
   avgCookiesPerCustomer: 1.2,
@@ -68,7 +68,7 @@ const tokyoStore = {
 };
 
 const dubaiStore = {
-  storeName: 'Dubai',
+  city: 'Dubai',
   minCustomers: 11,
   maxCustomers: 38,
   avgCookiesPerCustomer: 3.7,
@@ -94,7 +94,7 @@ const dubaiStore = {
 };
 
 const parisStore = {
-  storeName: 'Paris',
+  city: 'Paris',
   minCustomers: 20,
   maxCustomers: 38,
   avgCookiesPerCustomer: 2.3,
@@ -120,7 +120,7 @@ const parisStore = {
 };
 
 const limaStore = {
-  storeName: 'Lima',
+  city: 'Lima',
   minCustomers: 2,
   maxCustomers: 16,
   avgCookiesPerCustomer: 4.6,
@@ -147,13 +147,34 @@ const limaStore = {
 
 const storesArray = [seattleStore, tokyoStore, dubaiStore, parisStore, limaStore];
 storesArray.forEach(store => {
-  console.log(store.storeName);
+  // console.log(store.city);
   store.simulateSales();
   store.hourlySalesArray.forEach((sale, hour) => {
-    console.log(`${timeTranslate(hour + store.openingHour)}: ${sale} Cookies`);
+    // console.log(`${timeTranslate(hour + store.openingHour)}: ${sale} Cookies`);
   });
-  console.log(`Total Sales: ${store.totalSales}`)
+  // console.log(`Total Sales: ${store.totalSales}`)
 });
+
+function drawSalesTable(store) {
+  const salesTable = document.querySelector(`.sales-table.${store.city.toLowerCase()}`);
+  function drawRow(label, data) {
+    const saleRow = document.createElement('tr');
+    const saleLabel = document.createElement('td');
+    const saleData = document.createElement('td');
+
+    saleLabel.innerText = label;
+    saleData.innerText = data;
+
+    saleRow.append(saleLabel, saleData);
+    salesTable.append(saleRow);
+  }
+  store.hourlySalesArray.forEach((sale, hour) => {
+    drawRow(`${timeTranslate(hour + store.openingHour)}`, sale);
+  });
+  drawRow('Total', store.totalSales);
+}
+
+drawSalesTable(seattleStore)
 
 
 // Constructor function for Stores
