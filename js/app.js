@@ -38,6 +38,24 @@ const seattleStore = {
       this.hourlySalesArray.push(cookiesSold);
       this.totalSales += cookiesSold;
     }
+  },
+  drawSalesTable() {
+    const salesTable = document.querySelector(`.sales-table.${this.city.toLowerCase()}`);
+    function drawRow(label, data) {
+      const saleRow = document.createElement('tr');
+      const saleLabel = document.createElement('td');
+      const saleData = document.createElement('td');
+
+      saleLabel.innerText = label;
+      saleData.innerText = data;
+
+      saleRow.append(saleLabel, saleData);
+      salesTable.append(saleRow);
+    }
+    this.hourlySalesArray.forEach((sale, hour) => {
+      drawRow(`${timeTranslate(hour + this.openingHour)}`, sale);
+    });
+    drawRow('Total', this.totalSales);
   }
 };
 
@@ -64,6 +82,24 @@ const tokyoStore = {
       this.hourlySalesArray.push(cookiesSold);
       this.totalSales += cookiesSold;
     }
+  },
+  drawSalesTable() {
+    const salesTable = document.querySelector(`.sales-table.${this.city.toLowerCase()}`);
+    function drawRow(label, data) {
+      const saleRow = document.createElement('tr');
+      const saleLabel = document.createElement('td');
+      const saleData = document.createElement('td');
+
+      saleLabel.innerText = label;
+      saleData.innerText = data;
+
+      saleRow.append(saleLabel, saleData);
+      salesTable.append(saleRow);
+    }
+    this.hourlySalesArray.forEach((sale, hour) => {
+      drawRow(`${timeTranslate(hour + this.openingHour)}`, sale);
+    });
+    drawRow('Total', this.totalSales);
   }
 };
 
@@ -90,6 +126,24 @@ const dubaiStore = {
       this.hourlySalesArray.push(cookiesSold);
       this.totalSales += cookiesSold;
     }
+  },
+  drawSalesTable() {
+    const salesTable = document.querySelector(`.sales-table.${this.city.toLowerCase()}`);
+    function drawRow(label, data) {
+      const saleRow = document.createElement('tr');
+      const saleLabel = document.createElement('td');
+      const saleData = document.createElement('td');
+
+      saleLabel.innerText = label;
+      saleData.innerText = data;
+
+      saleRow.append(saleLabel, saleData);
+      salesTable.append(saleRow);
+    }
+    this.hourlySalesArray.forEach((sale, hour) => {
+      drawRow(`${timeTranslate(hour + this.openingHour)}`, sale);
+    });
+    drawRow('Total', this.totalSales);
   }
 };
 
@@ -116,6 +170,24 @@ const parisStore = {
       this.hourlySalesArray.push(cookiesSold);
       this.totalSales += cookiesSold;
     }
+  },
+  drawSalesTable() {
+    const salesTable = document.querySelector(`.sales-table.${this.city.toLowerCase()}`);
+    function drawRow(label, data) {
+      const saleRow = document.createElement('tr');
+      const saleLabel = document.createElement('td');
+      const saleData = document.createElement('td');
+
+      saleLabel.innerText = label;
+      saleData.innerText = data;
+
+      saleRow.append(saleLabel, saleData);
+      salesTable.append(saleRow);
+    }
+    this.hourlySalesArray.forEach((sale, hour) => {
+      drawRow(`${timeTranslate(hour + this.openingHour)}`, sale);
+    });
+    drawRow('Total', this.totalSales);
   }
 };
 
@@ -142,40 +214,51 @@ const limaStore = {
       this.hourlySalesArray.push(cookiesSold);
       this.totalSales += cookiesSold;
     }
+  },
+  drawSalesTable() {
+    const salesTable = document.querySelector(`.sales-table.${this.city.toLowerCase()}`);
+    function drawRow(label, data) {
+      const saleRow = document.createElement('tr');
+      const saleLabel = document.createElement('td');
+      const saleData = document.createElement('td');
+
+      saleLabel.innerText = label;
+      saleData.innerText = data;
+
+      saleRow.append(saleLabel, saleData);
+      salesTable.append(saleRow);
+    }
+    this.hourlySalesArray.forEach((sale, hour) => {
+      drawRow(`${timeTranslate(hour + this.openingHour)}`, sale);
+    });
+    drawRow('Total', this.totalSales);
   }
 };
 
 const storesArray = [seattleStore, tokyoStore, dubaiStore, parisStore, limaStore];
 storesArray.forEach(store => {
-  // console.log(store.city);
   store.simulateSales();
-  store.hourlySalesArray.forEach((sale, hour) => {
-    // console.log(`${timeTranslate(hour + store.openingHour)}: ${sale} Cookies`);
-  });
-  // console.log(`Total Sales: ${store.totalSales}`)
+  store.drawSalesTable();
 });
 
-function drawSalesTable(store) {
-  const salesTable = document.querySelector(`.sales-table.${store.city.toLowerCase()}`);
-  function drawRow(label, data) {
-    const saleRow = document.createElement('tr');
-    const saleLabel = document.createElement('td');
-    const saleData = document.createElement('td');
+// function drawSalesTable(store) {
+//   const salesTable = document.querySelector(`.sales-table.${store.city.toLowerCase()}`);
+//   function drawRow(label, data) {
+//     const saleRow = document.createElement('tr');
+//     const saleLabel = document.createElement('td');
+//     const saleData = document.createElement('td');
 
-    saleLabel.innerText = label;
-    saleData.innerText = data;
+//     saleLabel.innerText = label;
+//     saleData.innerText = data;
 
-    saleRow.append(saleLabel, saleData);
-    salesTable.append(saleRow);
-  }
-  store.hourlySalesArray.forEach((sale, hour) => {
-    drawRow(`${timeTranslate(hour + store.openingHour)}`, sale);
-  });
-  drawRow('Total', store.totalSales);
-}
-
-drawSalesTable(seattleStore)
-
+//     saleRow.append(saleLabel, saleData);
+//     salesTable.append(saleRow);
+//   }
+//   store.hourlySalesArray.forEach((sale, hour) => {
+//     drawRow(`${timeTranslate(hour + store.openingHour)}`, sale);
+//   });
+//   drawRow('Total', store.totalSales);
+// }
 
 // Constructor function for Stores
 // function Store(minCustomers, maxCustomers, avgCookiesPerCustomer) {
