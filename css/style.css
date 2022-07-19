@@ -9,15 +9,40 @@ body {
 }
 
 header {
-  display: flex;
+  box-sizing: border-box;
+  display: grid;
   align-items: center;
+  justify-content: center;
   background-color: #363636;
-  width: 100%;
-  padding: 20px;
+  width: 100vw;
+  padding: 30px 40px;
   margin-bottom: 20px;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
+.header-salmon-image {
+  margin-right: auto;
+}
 
-header h1 {
+.header-center-text {
   font-size: 3rem;
+}
+
+.header-navbar {
+  margin-left: auto;
+  font-size: 2rem;
+  /* padding: 20px; */
+}
+
+nav a:link {
+  color: #cccccc;
+
+}
+
+nav a:visited {
+  color: #aaaaaa;
+}
+
+nav a:hover {
+  color: #dddddd;
 }
