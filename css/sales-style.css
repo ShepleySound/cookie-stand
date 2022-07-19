@@ -5,7 +5,7 @@
 }
 
 .sales-table-container {
-  background-color: #484848;
+  background-color: #183849;
   padding: 18px;
   border-radius: 12px;
 }
@@ -21,7 +21,7 @@
   text-align: left;
   border-spacing: 12px;
   border-collapse: collapse;
-  border: 1px solid #363636;
+  border: 1px solid #294553;
 }
 
 .sales-table * {
@@ -29,11 +29,11 @@
 }
 
 tbody :nth-child(odd).store-row {
-  background-color: #404040;
+  background-color: #264453;
 }
 
 .city-head {
-  border-right: 4px solid #363636;
+  border-right: 4px solid #cccccc;
 }
 
 .sales-table th {
@@ -43,7 +43,7 @@ tbody :nth-child(odd).store-row {
 
 .sales-table td {
   font-size: 1.5rem;
-  border-top: 2px solid #424242;
+  border-top: 2px solid #cccccc;
 }
 
 table tfoot tr {
