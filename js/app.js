@@ -245,37 +245,35 @@ const limaStore = {
   }
 };
 
+function Store(minCustomers, maxCustomers, avgCookiesPerCustomer) {
+  this.minCustomers = minCustomers;
+  this.maxCustomers = maxCustomers;
+  this.avgCookiesPerCustomer = avgCookiesPerCustomer;
+  this.openingHour = 6;
+  this.closingHour = 19;
+  this.hourlySalesArray = [];
+  this.totalSales = 0;
+}
+
+Store.prototype.randomCustomerCount = function() {
+  // Inclusive random integer. Algorithm from MDN Math.random() docs.
+  const min = Math.ceil(this.minCustomers);
+  const max = Math.floor(this.maxCustomers)
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
+Store.prototype.simulateSales = function() {
+  this.hourlySalesArray = [];
+  this.totalSales = 0;
+  for (let i = this.openingHour; i <= this.closingHour; i++) {
+    const cookiesSold = Math.ceil(this.randomCustomerCount() * this.avgCookiesPerCustomer);
+    this.hourlySalesArray.push(cookiesSold);
+    this.totalSales += cookiesSold;
+  }
+};
+
 const storesArray = [seattleStore, tokyoStore, dubaiStore, parisStore, limaStore];
 storesArray.forEach(store => {
   store.simulateSales();
   store.drawSalesTable();
 });
-
-
-
-
-// Constructor function for Stores... To be added and revised later.
-// function Store(minCustomers, maxCustomers, avgCookiesPerCustomer) {
-//   this.minCustomers = minCustomers;
-//   this.maxCustomers = maxCustomers;
-//   this.avgCookiesPerCustomer = avgCookiesPerCustomer;
-//   this.randomCustomerCount = function() {
-//     // Inclusive random integer. Algorithm from MDN Math.random() docs.
-//     const min = Math.ceil(this.minCustomers);
-//     const max = Math.floor(this.maxCustomers);
-//     return Math.floor(Math.random() * (max - min + 1) + min);
-//   };
-//   this.openingHour = 6;
-//   this.closingHour = 19;
-//   this.hourlySalesArray = [];
-//   this.totalSales = 0;
-//   this.simulateSales = function() {
-//     this.hourlySalesArray = [];
-//     this.totalSales = 0;
-//     for (let i = this.openingHour; i <= this.closingHour; i++) {
-//       const cookiesSold = Math.ceil(this.randomCustomerCount() * this.avgCookiesPerCustomer);
-//       this.hourlySalesArray.push(cookiesSold);
-//       this.totalSales += cookiesSold;
-//     }
-//   }
-// };
