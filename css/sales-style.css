@@ -4,13 +4,7 @@
   margin-bottom: 20px;
 }
 
-.sales-card-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 20px;
-}
-
-.sales-card {
+.sales-table-container {
   background-color: #484848;
   padding: 18px;
   border-radius: 12px;
@@ -23,30 +17,35 @@
   padding: 10px 10px 20px 10px;
 }
 
-.sales-card table {
+.sales-table {
   text-align: left;
   border-spacing: 12px;
   border-collapse: collapse;
+  border: 1px solid #363636;
 }
 
-.sales-card table * {
+.sales-table * {
   padding: 10px;
 }
 
-.sales-card .sale-label {
+tbody :nth-child(odd).store-row {
+  background-color: #404040;
+}
+
+.city-head {
   border-right: 4px solid #363636;
 }
 
-.sales-card th {
+.sales-table th {
   font-size: 1.6rem;
   font-weight: 800;
 }
 
-.sales-card td {
+.sales-table td {
   font-size: 1.5rem;
   border-top: 2px solid #424242;
 }
 
-table tr:last-child td {
+table tfoot tr {
   font-weight: 600;
 }

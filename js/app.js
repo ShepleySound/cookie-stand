@@ -43,6 +43,7 @@ Store.prototype.simulateSales = function() {
   }
 };
 
+// Only called when drawing sales in separate tables.
 Store.prototype.drawSalesTable = function() {
   const salesTable = document.querySelector(`.sales-table.${this.city.toLowerCase()}`);
   function drawRow(label, data) {
@@ -64,6 +65,54 @@ Store.prototype.drawSalesTable = function() {
   drawRow('Total', this.totalSales);
 };
 
+// Draws the table with cities as columns.
+Store.prototype.drawSalesColumn = function() {
+  const salesHeaders = document.querySelector('tr.headers');
+  const cityHead = document.createElement('th');
+  const salesRows = document.querySelectorAll('.table-body tr');
+  const totalRow = document.querySelector('.table-totals tr');
+
+  cityHead.innerText = this.city
+  salesHeaders.append(cityHead);
+
+  salesRows.forEach((row, index) => {
+    const saleCell = document.createElement('td');
+    saleCell.classList.add('sale-data');
+    saleCell.innerText = this.hourlySalesArray[index];
+    row.append(saleCell);
+  });
+  const totalCell = document.createElement('td');
+  totalCell.classList.add('total-data');
+  totalCell.innerText = this.totalSales;
+  totalRow.append(totalCell);
+};
+
+// Draws the table with cities as rows.
+Store.prototype.drawSalesRow = function() {
+  const tableBody = document.querySelector('.sales-table-container tbody');
+  const storeRow = document.createElement('tr');
+  storeRow.classList.add('store-row')
+
+  const cityHead = document.createElement('th');
+  cityHead.classList.add('city-head', 'row-head');
+  cityHead.scope = 'row';
+  cityHead.innerText = this.city;
+  storeRow.append(cityHead);
+
+  this.hourlySalesArray.forEach(sale => {
+    const saleCell = document.createElement('td');
+    saleCell.classList.add('sale-data');
+    saleCell.innerText = sale;
+    storeRow.append(saleCell);
+  });
+
+  const totalCell = document.createElement('td');
+  totalCell.classList.add('total-data');
+  totalCell.innerText = this.totalSales;
+  storeRow.append(totalCell);
+  tableBody.append(storeRow);
+};
+
 const seattleStore = new Store('Seattle', 23, 65, 6.3);
 const tokyoStore = new Store('Tokyo', 3, 24, 1.2);
 const dubaiStore = new Store('Dubai', 11, 38, 3.7);
@@ -73,5 +122,5 @@ const limaStore = new Store('Lima', 2, 16, 4.6);
 const storesArray = [seattleStore, tokyoStore, dubaiStore, parisStore, limaStore];
 storesArray.forEach(store => {
   store.simulateSales();
-  store.drawSalesTable();
+  store.drawSalesRow();
 });
