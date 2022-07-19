@@ -3,20 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="js/app.js" defer></script>
+    <script src="../js/app.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,400;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/sales-style.css">
     <title>Sales</title>
   </head>
   <body>
     <header>
+      <img src="../img/salmon.png" width="200px" alt="Salmon Logo">
       <h1>Salmon Cookies</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="sales.html">Sales</a>
+      </nav>
     </header>
     <main>
-      <h2>
+      <h2 class="sales-header">
         Sales Data
       </h2>
       <section class="sales-card-container">
         <section class="sales-card seattle">
-          <h3>Seattle</h3>
+          <h3 class="card-title">Seattle</h3>
           <table class="sales-table seattle">
           <tr class="headers">
             <th>Time</th>
@@ -26,7 +37,7 @@
         </section>
 
         <section class="sales-card tokyo">
-          <h3>Tokyo</h3>
+          <h3 class="card-title">Tokyo</h3>
           <table class="sales-table tokyo">
             <tr class="headers">
               <th>Time</th>
@@ -36,7 +47,7 @@
         </section>
 
         <section class="sales-card dubai">
-          <h3>Dubai</h3>
+          <h3 class="card-title">Dubai</h3>
           <table class="sales-table dubai">
             <tr class="headers">
               <th>Time</th>
@@ -46,7 +57,7 @@
         </section>
 
         <section class="sales-card paris">
-          <h3>Paris</h3>
+          <h3 class="card-title">Paris</h3>
           <table class="sales-table paris">
             <tr class="headers">
               <th>Time</th>
@@ -56,7 +67,7 @@
         </section>
 
         <section class="sales-card lima">
-          <h3>Lima</h3>
+          <h3 class="card-title">Lima</h3>
           <table class="sales-table lima">
             <tr class="headers">
               <th>Time</th>

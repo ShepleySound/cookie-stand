@@ -1,7 +1,7 @@
 'use strict';
 
 function timeTranslate(hourInt) {
-  hourInt = parseInt(hourInt)
+  hourInt = parseInt(hourInt);
   if (isNaN(hourInt)) {
     return;
   } else if (hourInt === 0) {
@@ -45,6 +45,8 @@ const seattleStore = {
       const saleRow = document.createElement('tr');
       const saleLabel = document.createElement('td');
       const saleData = document.createElement('td');
+      saleLabel.classList.add('sale-label');
+      saleData.classList.add('sale-data');
 
       saleLabel.innerText = label;
       saleData.innerText = data;
@@ -89,6 +91,8 @@ const tokyoStore = {
       const saleRow = document.createElement('tr');
       const saleLabel = document.createElement('td');
       const saleData = document.createElement('td');
+      saleLabel.classList.add('sale-label');
+      saleData.classList.add('sale-data');
 
       saleLabel.innerText = label;
       saleData.innerText = data;
@@ -133,6 +137,8 @@ const dubaiStore = {
       const saleRow = document.createElement('tr');
       const saleLabel = document.createElement('td');
       const saleData = document.createElement('td');
+      saleLabel.classList.add('sale-label');
+      saleData.classList.add('sale-data');
 
       saleLabel.innerText = label;
       saleData.innerText = data;
@@ -177,6 +183,8 @@ const parisStore = {
       const saleRow = document.createElement('tr');
       const saleLabel = document.createElement('td');
       const saleData = document.createElement('td');
+      saleLabel.classList.add('sale-label');
+      saleData.classList.add('sale-data');
 
       saleLabel.innerText = label;
       saleData.innerText = data;
@@ -221,6 +229,8 @@ const limaStore = {
       const saleRow = document.createElement('tr');
       const saleLabel = document.createElement('td');
       const saleData = document.createElement('td');
+      saleLabel.classList.add('sale-label');
+      saleData.classList.add('sale-data');
 
       saleLabel.innerText = label;
       saleData.innerText = data;
@@ -241,26 +251,10 @@ storesArray.forEach(store => {
   store.drawSalesTable();
 });
 
-// function drawSalesTable(store) {
-//   const salesTable = document.querySelector(`.sales-table.${store.city.toLowerCase()}`);
-//   function drawRow(label, data) {
-//     const saleRow = document.createElement('tr');
-//     const saleLabel = document.createElement('td');
-//     const saleData = document.createElement('td');
 
-//     saleLabel.innerText = label;
-//     saleData.innerText = data;
 
-//     saleRow.append(saleLabel, saleData);
-//     salesTable.append(saleRow);
-//   }
-//   store.hourlySalesArray.forEach((sale, hour) => {
-//     drawRow(`${timeTranslate(hour + store.openingHour)}`, sale);
-//   });
-//   drawRow('Total', store.totalSales);
-// }
 
-// Constructor function for Stores
+// Constructor function for Stores... To be added and revised later.
 // function Store(minCustomers, maxCustomers, avgCookiesPerCustomer) {
 //   this.minCustomers = minCustomers;
 //   this.maxCustomers = maxCustomers;
