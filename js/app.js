@@ -10,12 +10,13 @@ function Store(city, minCustomers, maxCustomers, avgCookiesPerCustomer, openingH
   // this.hourlySales = {}; // Will use hours as keys to link sales to times.
   this.hourlyCustomersArray = [];
   this.totalCustomers = 0;
+  this.controlCurve = [0.5, 0.75, 1.0, 0.6, 0.8, 1.0, 0.7, 0.4, 0.6, 0.9, 0.7, 0.5, 0.3, 0.4, 0.6];
 }
 
-Store.prototype.randomCustomerCount = function() {
+Store.prototype.randomCustomerCount = function(min, max) {
   // Inclusive random integer. Algorithm from MDN Math.random() docs.
-  const min = Math.ceil(this.minCustomers);
-  const max = Math.floor(this.maxCustomers)
+  min = Math.ceil(min);
+  max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
@@ -23,7 +24,10 @@ Store.prototype.simulateSales = function() {
   this.hourlyCustomersArray = [];
   this.totalCustomers = 0;
   for (let i = this.openingHour; i <= this.closingHour; i++) {
-    const customerCount = this.randomCustomerCount();
+    const customerCount = this.randomCustomerCount(
+      this.minCustomers,
+      this.maxCustomers * this.controlCurve[i - this.openingHour]);
+      
     // this.hourlySales[i] = cookiesSold; // Not in use yet.
     this.hourlyCustomersArray.push(customerCount);
     this.totalCustomers += customerCount;
@@ -31,7 +35,6 @@ Store.prototype.simulateSales = function() {
 };
 
 Store.calculateCookieSales = function(customerCount, avgCookiesPerCustomer) {
-  console.log(customerCount)
   return Math.ceil(customerCount * avgCookiesPerCustomer);
 };
 
@@ -91,7 +94,7 @@ Store.prototype.drawSalesColumn = function() {
 
 // Draws the table with cities as rows.
 Store.prototype.drawSalesRow = function() {
-  const tableBody = document.querySelector('.sales-table-container tbody');
+  const tableBody = document.querySelector('.sales-table tbody');
   const storeRow = document.createElement('tr');
   storeRow.classList.add('store-row');
 
@@ -115,6 +118,31 @@ Store.prototype.drawSalesRow = function() {
   tableBody.append(storeRow);
 };
 
+Store.prototype.drawStaffRow = function() {
+  const tableBody = document.querySelector('.staff-table tbody');
+  const storeRow = document.createElement('tr');
+  storeRow.classList.add('store-row');
+
+  const cityHead = document.createElement('th');
+  cityHead.classList.add('city-head', 'row-head');
+  cityHead.scope = 'row';
+  cityHead.innerText = this.city;
+  storeRow.append(cityHead);
+
+  this.hourlyCustomersArray.forEach((customers, i) => {
+    const staffCell = document.createElement('td');
+    staffCell.classList.add('staff-data');
+    const staffCurrentHour = Store.calculateStaff(customers);
+    const staffPreviousHour = Store.calculateStaff(this.hourlyCustomersArray[i - 1]);
+    if (staffPreviousHour !== staffCurrentHour){
+      staffCell.innerText = staffCurrentHour;
+    } else {
+      staffCell.innerText = '--';
+    }
+    storeRow.append(staffCell);
+  });
+  tableBody.append(storeRow);
+};
 
 
 const seattleStore = new Store('Seattle', 23, 65, 6.3);
@@ -124,11 +152,13 @@ const parisStore = new Store('Paris', 20, 38, 2.3);
 const limaStore = new Store('Lima', 2, 16, 4.6);
 
 const storesArray = [seattleStore, tokyoStore, dubaiStore, parisStore, limaStore];
-populateSaleHeaders(6, 19);
+populateTableHeaders('sales-table', 6, 19);
+populateTableHeaders('staff-table', 6, 19, false);
 storesArray.forEach(store => {
 
   store.simulateSales();
   store.drawSalesRow();
+  store.drawStaffRow();
 });
 
 
@@ -147,8 +177,8 @@ function timeTranslate(hourInt) {
   }
 }
 
-function populateSaleHeaders(minTime, maxTime) {
-  const tableHeaders = document.querySelector('.sales-table .table-headers');
+function populateTableHeaders(tableClass, minTime, maxTime, hasTotalColumn = true) {
+  const tableHeaders = document.querySelector(`.${tableClass} .table-headers`);
   // Create blank column header cell above city names.
   const blankHead = document.createElement('th');
   blankHead.classList.add('blank-head', 'column-head');
@@ -161,12 +191,15 @@ function populateSaleHeaders(minTime, maxTime) {
     timeHead.innerText = timeTranslate(i);
     tableHeaders.append(timeHead);
   }
-  // Create total column header cell.
-  const totalHead = document.createElement('th');
-  totalHead.classList.add('total-head', 'column-head');
-  totalHead.innerText = 'Total';
-  tableHeaders.append(totalHead);
+  if (hasTotalColumn){
+    // Create total column header cell.
+    const totalHead = document.createElement('th');
+    totalHead.classList.add('total-head', 'column-head');
+    totalHead.innerText = 'Total';
+    tableHeaders.append(totalHead);
+  }
 }
+
 
 // Potential helper function
 // function getTotalTimeRange(stores) {
