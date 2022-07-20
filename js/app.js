@@ -137,12 +137,53 @@ Store.prototype.drawStaffRow = function() {
     if (staffPreviousHour !== staffCurrentHour){
       staffCell.innerText = staffCurrentHour;
     } else {
-      staffCell.innerText = '--';
+      staffCell.innerText = '-';
     }
     storeRow.append(staffCell);
   });
   tableBody.append(storeRow);
 };
+
+
+function calculateHourlyTotals(storesArray) {
+  let hourTotal = [];
+  storesArray.forEach(store => {
+    console.log(store.city)
+    store.hourlyCustomersArray.forEach((customerCount, i) => {
+      if (!hourTotal[i]) {
+        hourTotal[i] = 0;
+      }
+      hourTotal[i]+= Store.calculateCookieSales(customerCount, store.avgCookiesPerCustomer);
+    });
+  });
+  return hourTotal;
+}
+function drawFooterTotals(totalsArray) {
+  const tablefooter = document.querySelector('.sales-table tfoot');
+  const totalRow = document.createElement('tr');
+  totalRow.classList.add('total-row');
+
+  const totalHead = document.createElement('th');
+  totalHead.classList.add('total-head', 'row-head');
+  totalHead.scope = 'row';
+  totalHead.innerText = 'All Locations';
+  totalRow.append(totalHead);
+
+  let sumTotalData = 0;
+
+  totalsArray.forEach(totalData => {
+    sumTotalData += totalData;
+    const totalCell = document.createElement('td');
+    totalCell.classList.add('total-data');
+    totalCell.innerText = totalData;
+    totalRow.append(totalCell);
+  });
+  const sumTotalCell = document.createElement('td');
+  sumTotalCell.classList.add('total-data', 'sum-total');
+  sumTotalCell.innerText = sumTotalData;
+  totalRow.append(sumTotalCell);
+  tablefooter.append(totalRow);
+}
 
 
 const seattleStore = new Store('Seattle', 23, 65, 6.3);
@@ -160,6 +201,7 @@ storesArray.forEach(store => {
   store.drawSalesRow();
   store.drawStaffRow();
 });
+drawFooterTotals(calculateHourlyTotals(storesArray));
 
 
 function timeTranslate(hourInt) {

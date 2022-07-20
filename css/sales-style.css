@@ -8,6 +8,7 @@
   background-color: #183849;
   padding: 18px;
   border-radius: 12px;
+  margin-bottom: 24px;
 }
 
 .hourly-table {
@@ -25,7 +26,7 @@ tbody :nth-child(odd).store-row {
   background-color: #264453;
 }
 
-.city-head {
+.row-head {
   border-right: 4px solid #cccccc;
 }
 
