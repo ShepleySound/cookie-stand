@@ -1,0 +1,51 @@
+.sales-header {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.sales-table-container {
+  background-color: #183849;
+  padding: 18px;
+  border-radius: 12px;
+}
+
+.sales-card .card-title {
+  font-size: 2rem;
+  font-weight: 800;
+  text-align: center;
+  padding: 10px 10px 20px 10px;
+}
+
+.sales-table {
+  text-align: left;
+  border-spacing: 12px;
+  border-collapse: collapse;
+  border: 1px solid #294553;
+}
+
+.sales-table * {
+  padding: 10px;
+}
+
+tbody :nth-child(odd).store-row {
+  background-color: #264453;
+}
+
+.city-head {
+  border-right: 4px solid #cccccc;
+}
+
+.sales-table th {
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+.sales-table td {
+  font-size: 1.5rem;
+  border-top: 2px solid #cccccc;
+}
+
+table tfoot tr {
+  font-weight: 600;
+}
