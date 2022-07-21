@@ -1,0 +1,107 @@
+main {
+  display: flex;
+  flex-direction: column;
+}
+
+.headline-container {
+  background-color: #98a5b311;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+}
+
+img.headline-image {
+  max-width: 100vw;
+  min-height: 180px;
+  opacity: 30%;
+}
+
+.bold-call-container {
+  position: absolute;
+  top: 4%;
+  left: 4%;
+}
+
+.bold-call {
+  color: #cccccc;
+}
+
+h2.bold-call {
+  font-size: 2.2rem;
+  font-weight: 600;
+
+}
+
+h3.bold-call {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.head-color-local {
+  color: #89a58b
+}
+
+.head-color-fresh {
+  color: #9fbbc2
+}
+
+.head-color-cookies {
+  color: #ccb8b0
+}
+
+.info-section {
+  padding: 24px;
+}
+
+.info-section h2 {
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+}
+
+.locations-information {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+}
+
+.locations-information p {
+  max-width: 500px;
+  line-height: 1.5em;
+}
+
+.location-card-container {
+  box-sizing: border-box;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.location-card {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  background-color: white;
+  box-sizing: border-box;
+  width: 220px;
+  padding: 10px;
+  box-shadow: 0px 10px 20px 0px #121212;
+  margin: 12px;
+}
+
+.location-card img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  filter: saturate(.8);
+}
+
+.location-card h3 {
+  font-size: 1.2rem;
+  padding-top: 8px;
+  color: #121212;
+}

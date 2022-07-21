@@ -6,7 +6,7 @@
     <script src="../js/app.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,400;1,900&display=swap" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,400;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/sales-style.css">
@@ -14,43 +14,28 @@
   </head>
   <body>
     <header>
-      <section class="header-top">
-        <img class="header-salmon-image" src="../img/salmon.png" width="200px" alt="Salmon Logo">
-        <h1 class="header-center-text">Salmon Cookies</h1>
-        <img class="header-salmon-image flipped" src="../img/salmon.png" width="200px" alt="Salmon Logo">
-      </section>
-      <section class="header-bottom">
-        <nav class="header-navbar">
-          <a href="index.html">Home</a>
-          <a href="sales.html">Sales</a>
-        </nav>
-     </section>
+      <div class="header-logo">
+        <img class="header-logo-image" src="../img/salmon.png"  height="40px" width="120px" alt="Salmon Logo">
+        <h1 class="header-logo-text">Salmon<em>Cookies</em></h1>
+      </div>
+      <div class="header-center-space"></div>
+      <nav class="header-navbar">
+        <a href="../index.html">Home</a>
+        <a href="sales.html">Sales</a>
+      </nav>
     </header>
     <main>
-      <h2 class="sales-header">
-        Sales Data
-      </h2>
-      <section class="sales-table-container">
-          <table class="sales-table">
+      <section class="bold-call-container">
+        <h2 class="bold-call">Need sales data?</h2>
+        <h3 class="bold-call">Look no further.</h3>
+      </section>
+      <section class="sales-table-container hourly-table-container">
+        <h2 class="sales-header table-header">
+          Cookies Sold Per Hour
+        </h2>
+          <table class="sales-table hourly-table">
             <thead>
-              <tr class="table-headers">
-                <th class="blank-head"></th>
-                <th class="time-head column-head">6AM</th>
-                <th class="time-head column-head">7AM</th>
-                <th class="time-head column-head">8AM</th>
-                <th class="time-head column-head">9AM</th>
-                <th class="time-head column-head">10AM</th>
-                <th class="time-head column-head">11AM</th>
-                <th class="time-head column-head">12PM</th>
-                <th class="time-head column-head">1PM</th>
-                <th class="time-head column-head">2PM</th>
-                <th class="time-head column-head">3PM</th>
-                <th class="time-head column-head">4PM</th>
-                <th class="time-head column-head">5PM</th>
-                <th class="time-head column-head">6PM</th>
-                <th class="time-head column-head">7PM</th>
-                <th class="total-head column-head">Total</td>
-              </tr>
+              <tr class="table-headers"></tr>
             </thead>
             <tbody class="table-body">
               
@@ -60,6 +45,23 @@
             </tfoot>
           </table>
       </section>
+
+      <section class="staff-table-container hourly-table-container">
+        <h2 class="staff-header table-header">
+          Staff Required Per Hour
+        </h2>
+        <table class="staff-table hourly-table">
+          <thead>
+            <tr class="table-headers"></tr>
+          </thead>
+          <tbody class="table-body">
+            
+          </tbody>
+          <tfoot>
+
+          </tfoot>
+        </table>
+    </section>
     </main>
     <footer></footer>
   </body>
