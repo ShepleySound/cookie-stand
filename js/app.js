@@ -27,7 +27,6 @@ Store.prototype.simulateSales = function() {
     const customerCount = this.randomCustomerCount(
       this.minCustomers,
       this.maxCustomers * this.controlCurve[i - this.openingHour]);
-      
     // this.hourlySales[i] = cookiesSold; // Not in use yet.
     this.hourlyCustomersArray.push(customerCount);
     this.totalCustomers += customerCount;
@@ -77,7 +76,7 @@ Store.prototype.drawSalesColumn = function() {
   const salesRows = document.querySelectorAll('.table-body tr');
   const totalRow = document.querySelector('.table-totals tr');
 
-  cityHead.innerText = this.city
+  cityHead.innerText = this.city;
   salesHeaders.append(cityHead);
 
   salesRows.forEach((row, i) => {
@@ -150,7 +149,7 @@ Store.prototype.drawStaffRow = function() {
 function calculateHourlyTotals(storesArray) {
   let hourTotal = [];
   storesArray.forEach(store => {
-    console.log(store.city)
+    console.log(store.city);
     store.hourlyCustomersArray.forEach((customerCount, i) => {
       if (!hourTotal[i]) {
         hourTotal[i] = 0;
@@ -187,7 +186,6 @@ function drawFooterTotals(totalsArray) {
   tablefooter.append(totalRow);
 }
 
-
 const seattleStore = new Store('Seattle', 23, 65, 6.3);
 const tokyoStore = new Store('Tokyo', 3, 24, 1.2);
 const dubaiStore = new Store('Dubai', 11, 38, 3.7);
@@ -198,13 +196,12 @@ const storesArray = [seattleStore, tokyoStore, dubaiStore, parisStore, limaStore
 populateTableHeaders('sales-table', 6, 19);
 populateTableHeaders('staff-table', 6, 19, false);
 storesArray.forEach(store => {
-
   store.simulateSales();
   store.drawSalesRow();
   store.drawStaffRow();
 });
-drawFooterTotals(calculateHourlyTotals(storesArray));
 
+drawFooterTotals(calculateHourlyTotals(storesArray));
 
 function timeTranslate(hourInt) {
   hourInt = parseInt(hourInt);

@@ -25,10 +25,38 @@
       </nav>
     </header>
     <main>
-      <section class="bold-call-container">
-        <h2 class="bold-call">Need sales data?</h2>
-        <h3 class="bold-call">Look no further.</h3>
-      </section>
+      <div class="upper-section">
+
+        <section class="bold-call-container">
+          <h2 class="bold-call">Need sales data?</h2>
+          <h3 class="bold-call">Look no further.</h3>  
+        </section>
+
+        <section class="store-form-container">
+          <h2 class="store-form-header">Add/Update Store</h2>
+          <form class="store-form">
+            <label for="location-name">Location Name
+              <input type="text" name="location-name" id="city-name">
+            </label>
+            <section class="sales-generator">
+              <h3>Sales Generator</h3>
+              <fieldset>
+                <legend>Customers Per Hour</legend>
+                <label for="min-customers">Min
+                  <input type="number" name="min-customers" id="min-customers">
+                </label>
+                <label for="max-customers">Max
+                  <input type="number" name="max-customers" id="max-customers">
+                </label>
+              </fieldset>
+              <label for="average-cookies">Average Cookies Per Customer
+                <input type="number" name="average-cookies" id="average-cookies">
+              </label>
+            </section>
+          </form>
+        </section>
+
+      </div>
       <section class="sales-table-container hourly-table-container">
         <h2 class="sales-header table-header">
           Cookies Sold Per Hour

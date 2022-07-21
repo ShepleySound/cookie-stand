@@ -18,12 +18,6 @@ header {
   align-items: flex-end;
 }
 
-/* .header-top {
-  display: flex;
-  align-items: center;
-  height: 120px;
-} */
-
 .header-logo {
   display: flex;
   flex-direction: column;

@@ -1,8 +1,4 @@
-.bold-call-container {
-  padding: 120px 60px;
-}
-
-.bold-call {}
+.bold-call-container {}
 
 h2.bold-call {
   font-size: 3rem;
@@ -12,10 +8,26 @@ h3.bold-call {
   font-size: 2rem;
 }
 
+.upper-section {
+  display: flex;
+  align-items: center;
+  margin: 60px;
+
+}
+
+.store-form-container {
+  margin-left: 60px;
+  padding: 60px;
+  background-color: #0000000c;
+}
+
+.store-form-header {
+  font-size: 1.2rem;
+}
+
 .table-header {
   font-size: 1.2rem;
   font-weight: 600;
-  /* text-align: center; */
   padding: 36px 0px 12px 36px;
   background-color: #0000000c;
 }
@@ -24,8 +36,7 @@ h3.bold-call {
   box-sizing: border-box;
   background-color: #2f4753;
   width: 100vw;
-  /* border-radius: 12px; */
-  /* margin-top: 24px; */
+
   margin: 24px 0;
 }
 
