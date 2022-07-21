@@ -76,12 +76,47 @@ nav a:hover {
 }
 
 footer {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-top: auto;
   background-color: #2c3d46;
-  height: 100px;
   width: 100vw;
+  padding: 20px 0px;
+}
+
+.hours-contact-footer {
+  display: flex;
+  justify-content: center;
+}
+
+.hours-head-small {
+  font-size: .75em;
+}
+
+.contact-list dt {
+  margin-top: 8px;
+}
+
+.contact-list dd {
+  margin-top: 4px;
+}
+
+.github-logo {
+  width: 48px;
+}
+
+.linkedin-logo {
+  width: 58px;
+}
+
+.github-logo,
+.linkedin-logo {
+  margin: 0px 24px;
+}
+
+.dev-credit {
+  padding-top: 8px;
 }

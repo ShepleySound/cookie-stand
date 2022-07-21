@@ -18,14 +18,6 @@ img.headline-image {
   opacity: 30%;
 }
 
-/* .headline-overlay {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #a9b8b559;
-} */
-
 .bold-call-container {
   position: absolute;
   top: 4%;
@@ -72,6 +64,8 @@ h3.bold-call {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
 }
 
 .locations-information p {
@@ -84,7 +78,7 @@ h3.bold-call {
   padding: 20px;
   display: flex;
   flex-wrap: wrap;
-
+  justify-content: center;
 }
 
 .location-card {
@@ -110,10 +104,4 @@ h3.bold-call {
   font-size: 1.2rem;
   padding-top: 8px;
   color: #121212;
-}
-
-.hours-information {}
-
-.hours-head-small {
-  font-size: .75em;
 }
