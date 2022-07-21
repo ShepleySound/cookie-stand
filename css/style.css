@@ -87,6 +87,15 @@ footer {
   padding: 20px 0px;
 }
 
+.info-section {
+  padding: 24px;
+}
+
+.info-section h2 {
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+}
+
 .hours-contact-footer {
   display: flex;
   justify-content: center;

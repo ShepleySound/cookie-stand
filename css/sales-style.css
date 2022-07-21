@@ -26,6 +26,7 @@ h3.bold-call {
   width: 100vw;
   /* border-radius: 12px; */
   /* margin-top: 24px; */
+  margin: 24px 0;
 }
 
 .hourly-table {
