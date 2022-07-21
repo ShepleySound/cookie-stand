@@ -136,8 +136,10 @@ Store.prototype.drawStaffRow = function() {
     const staffPreviousHour = Store.calculateStaff(this.hourlyCustomersArray[i - 1]);
     if (staffPreviousHour !== staffCurrentHour){
       staffCell.innerText = staffCurrentHour;
+      staffCell.classList.add('changed');
     } else {
       staffCell.innerText = '-';
+      staffCell.classList.remove('changed');
     }
     storeRow.append(staffCell);
   });

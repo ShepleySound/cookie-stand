@@ -1,21 +1,38 @@
-.table-header {
+.bold-call-container {
+  padding: 120px 60px;
+}
+
+.bold-call {}
+
+h2.bold-call {
+  font-size: 3rem;
+}
+
+h3.bold-call {
   font-size: 2rem;
-  text-align: center;
-  margin-bottom: 20px;
+}
+
+.table-header {
+  font-size: 1.2rem;
+  font-weight: 600;
+  /* text-align: center; */
+  padding: 36px 0px 12px 36px;
+  background-color: #0000000c;
 }
 
 .hourly-table-container {
-  background-color: #183849;
-  padding: 18px;
-  border-radius: 12px;
-  margin-bottom: 24px;
+  box-sizing: border-box;
+  background-color: #2f4753;
+  width: 100vw;
+  /* border-radius: 12px; */
+  /* margin-top: 24px; */
 }
 
 .hourly-table {
   text-align: left;
   border-spacing: 12px;
   border-collapse: collapse;
-  border: 1px solid #294553;
+  width: 100vw
 }
 
 .hourly-table * {
@@ -23,23 +40,28 @@
 }
 
 tbody :nth-child(odd).store-row {
-  background-color: #264453;
+  background-color: #254453;
 }
 
 .row-head {
   border-right: 4px solid #cccccc;
+  width: 10rem;
+  text-align: end;
 }
 
 .hourly-table th {
-  font-size: 1.6rem;
+  font-size: 1.1rem;
   font-weight: 800;
 }
 
 .hourly-table td {
-  font-size: 1.5rem;
-  border-top: 2px solid #cccccc;
+  font-size: 1rem;
 }
 
 table tfoot tr {
   font-weight: 600;
+}
+
+.staff-data.changed {
+  background-color: #ffffff1c;
 }
