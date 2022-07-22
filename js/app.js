@@ -272,7 +272,7 @@ function warningBox(formInput, warningString = 'Warning!') {
 
     setTimeout(() => {
       warning.classList.add('displayed');
-    }, 10)
+    }, 10);
     setTimeout(() => {
       warning.classList.remove('displayed');
       warning.classList.add('hidden');
@@ -286,7 +286,7 @@ function warningBox(formInput, warningString = 'Warning!') {
 
 const storeForm = document.querySelector('#store-form');
 drawTables(storesArray);
-storeForm.addEventListener('submit', handleSubmit)
+storeForm.addEventListener('submit', handleSubmit);
 
 
 // Potential helper function
