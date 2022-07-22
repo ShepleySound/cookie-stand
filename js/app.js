@@ -103,7 +103,6 @@ Store.prototype.drawStaffRow = function() {
 function calculateHourlyTotals(storesArray) {
   let hourTotal = [];
   storesArray.forEach(store => {
-    console.log(store.city);
     store.hourlyCustomersArray.forEach((customerCount, i) => {
       if (!hourTotal[i]) {
         hourTotal[i] = 0;
@@ -236,8 +235,6 @@ function handleSubmit(e) {
       return;
     }
     if (parseInt(minCustomers.value) > parseInt(maxCustomers.value)) {
-      console.log(minCustomers.value)
-      console.log(maxCustomers.value)
       warningBox(minCustomers, 'Min must be less than Max.');
       return;
     }
