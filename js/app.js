@@ -53,14 +53,14 @@ Store.prototype.drawSalesRow = function() {
   storeRow.classList.add('store-row');
 
   const cityHead = document.createElement('th');
-  cityHead.classList.add(`${this.city.toLowerCase()}`, 'city-head', 'row-head');
+  cityHead.classList.add('city-head', 'row-head');
   cityHead.scope = 'row';
   cityHead.innerText = this.city;
   storeRow.append(cityHead);
 
   this.hourlyCustomersArray.forEach(customers => {
     const saleCell = document.createElement('td');
-    saleCell.classList.add(`${this.city.toLowerCase()}`, 'sale-data');
+    saleCell.classList.add('sale-data');
     saleCell.innerText = Store.calculateCookieSales(customers, this.avgCookiesPerCustomer);
     storeRow.append(saleCell);
   });
@@ -235,7 +235,9 @@ function handleSubmit(e) {
       warningBox(location, 'Please enter a location name.');
       return;
     }
-    if (minCustomers.value > maxCustomers.value) {
+    if (parseInt(minCustomers.value) > parseInt(maxCustomers.value)) {
+      console.log(minCustomers.value)
+      console.log(maxCustomers.value)
       warningBox(minCustomers, 'Min must be less than Max.');
       return;
     }

@@ -14,11 +14,7 @@ h3.bold-call {
 
 .simulate-sales-button {
   margin-top: 12px;
-  border: none;
-  background-color: #c0b9b74d;
-  color: #d8d6d6;
   padding: 24px;
-  border-radius: 10px;
   font-size: 1.5rem;
 }
 
@@ -70,7 +66,7 @@ h3.bold-call {
 
 input#min-customers,
 input#max-customers {
-  width: 3em;
+  width: 4em;
 }
 
 input#average-cookies {
@@ -88,14 +84,29 @@ input#average-cookies {
 }
 
 .submit-form-button {
-  border: none;
-  background-color: #c0b9b74d;
-  color: #d8d6d6;
   padding: 12px 24px;
-  border-radius: 10px;
   font-size: 1.2rem;
   align-self: center;
   justify-self: center;
+}
+
+.submit-form-button,
+.simulate-sales-button {
+  transition: background-color 250ms;
+  border: none;
+  background-color: #c0b9b74d;
+  color: #d8d6d6;
+  border-radius: 10px;
+}
+
+.submit-form-button:hover,
+.simulate-sales-button:hover {
+  background-color: #576e854d;
+}
+
+.submit-form-button:active,
+.simulate-sales-button:active {
+  background-color: #c77c724d;
 }
 
 .table-header {
