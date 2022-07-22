@@ -52,6 +52,13 @@ h3.bold-call {
   flex-direction: column;
   margin: 6px 0px;
   max-width: 10em;
+  position: relative;
+}
+
+.store-form input {
+  background-color: #8b99a1;
+  border: 1px solid #5a5a5a;
+  border-radius: 4px;
 }
 
 .min-max-inputs {
@@ -78,7 +85,7 @@ input#average-cookies {
 
 .new-sales-data h3 {
   font-size: 1.2rem;
-  margin-bottom: 12px;
+  margin-bottom: 6px;
   font-weight: 600;
 }
 
@@ -143,4 +150,24 @@ table tfoot tr {
 
 .staff-data.changed {
   background-color: #ffffff1c;
+}
+
+.warning-box {
+  font-size: .8em;
+  position: absolute;
+  padding: 8px;
+  bottom: 1.2em;
+  background-color: #ce5959dc;
+  color: #222222;
+  border-radius: 4px;
+  transition: opacity 500ms;
+  opacity: 0%;
+}
+
+.displayed {
+  opacity: 100%
+}
+
+.hidden {
+  opacity: 0%;
 }

@@ -242,6 +242,61 @@ function populateTableHeaders(tableClass, minTime, maxTime, hasTotalColumn = tru
   }
 }
 
+function storeExists(location, storesArray) {
+  for (let i = 0; i < storesArray.length; i++) {
+    if (location === storesArray[i].city) {
+      return true;
+    }
+  }
+  return false;
+}
+
+console.log(storeExists('Seattle', storesArray))
+function handleSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  const location = form.location;
+  const minCustomers = form.minCustomers;
+  const maxCustomers = form.maxCustomers;
+  const avgCookiesPerCustomer = form.averageCookies;
+  if (location.value.length < 1) {
+    warningBox(location, 'Please enter a location name.');
+    return;
+  }
+
+  
+  form.reset();
+}
+
+let isWarningRunning = false;
+function warningBox(formInput, warningString = 'Warning!') {
+  if (!isWarningRunning) {
+    isWarningRunning = true;
+    const parent = formInput.parentElement;
+    const warning = document.createElement('div');
+    warning.classList.add('warning-box');
+    warning.innerText = warningString;
+
+    parent.append(warning);
+
+    setTimeout(() => {
+      warning.classList.add('displayed');
+    }, 10)
+    setTimeout(() => {
+      warning.classList.remove('displayed');
+      warning.classList.add('hidden');
+    }, 2500);
+    setTimeout(() => {
+      warning.remove();
+      isWarningRunning = false;
+    }, 3000);
+  }
+}
+
+const storeForm = document.querySelector('#store-form');
+
+storeForm.addEventListener('submit', handleSubmit)
+
 
 // Potential helper function
 // function getTotalTimeRange(stores) {
