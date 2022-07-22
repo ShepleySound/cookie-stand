@@ -29,30 +29,34 @@
 
         <section class="bold-call-container">
           <h2 class="bold-call">Need sales data?</h2>
-          <h3 class="bold-call">Look no further.</h3>  
+          <h3 class="bold-call">Look no further.</h3> 
+          <button class="simulate-sales-button">Simulate Sales</button> 
         </section>
 
         <section class="store-form-container">
           <h2 class="store-form-header">Add/Update Store</h2>
           <form class="store-form">
             <label for="location-name">Location Name
-              <input type="text" name="location-name" id="city-name">
+              <input type="text" name="location-name" id="location-name" minlength="1" maxlength="40">
             </label>
-            <section class="sales-generator">
-              <h3>Sales Generator</h3>
+            <section class="new-sales-data">
+              <h3>Sales data</h3>
               <fieldset>
                 <legend>Customers Per Hour</legend>
-                <label for="min-customers">Min
-                  <input type="number" name="min-customers" id="min-customers">
-                </label>
-                <label for="max-customers">Max
-                  <input type="number" name="max-customers" id="max-customers">
-                </label>
+                <section class="min-max-inputs">
+                  <label for="min-customers">Min
+                    <input type="number" name="min-customers" id="min-customers" min="0" step="1">
+                  </label>
+                  <label for="max-customers">Max
+                    <input type="number" name="max-customers" id="max-customers" min="0" step="1">
+                  </label>
+                </section>
               </fieldset>
               <label for="average-cookies">Average Cookies Per Customer
-                <input type="number" name="average-cookies" id="average-cookies">
+                <input type="number" name="average-cookies" id="average-cookies" min="0" step=".1">
               </label>
             </section>
+            <input class="submit-form-button" type="button" value="submit">
           </form>
         </section>
 

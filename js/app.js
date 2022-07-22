@@ -159,6 +159,7 @@ function calculateHourlyTotals(storesArray) {
   });
   return hourTotal;
 }
+
 function drawFooterTotals(totalsArray) {
   const tablefooter = document.querySelector('.sales-table tfoot');
   const totalRow = document.createElement('tr');

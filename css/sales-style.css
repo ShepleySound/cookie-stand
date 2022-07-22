@@ -12,17 +12,85 @@ h3.bold-call {
   display: flex;
   align-items: center;
   margin: 60px;
+}
 
+.simulate-sales-button {
+  margin-top: 12px;
+  border: none;
+  background-color: #c0b9b74d;
+  color: #d8d6d6;
+  padding: 24px;
+  border-radius: 10px;
+  font-size: 1.5rem;
 }
 
 .store-form-container {
   margin-left: 60px;
-  padding: 60px;
-  background-color: #0000000c;
+  padding: 40px;
+  background-color: #c0c0c013;
+  border-radius: 18px;
+  border: 1px solid #c9c9c91a;
 }
 
 .store-form-header {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.store-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.store-form>* {
+  margin: 6px 0px;
+}
+
+.store-form label {
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin: 6px 0px;
+  max-width: 10em;
+}
+
+.min-max-inputs {
+  display: flex;
+  align-items: center;
+}
+
+.min-max-inputs>label {
+  margin-right: 12px;
+}
+
+input#min-customers,
+input#max-customers {
+  width: 3em;
+}
+
+input#average-cookies {
+  width: 4em;
+}
+
+.new-sales-data {
+  margin-top: 6px;
+}
+
+.new-sales-data h3 {
   font-size: 1.2rem;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.submit-form-button {
+  border: none;
+  background-color: #c0b9b74d;
+  color: #d8d6d6;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  align-self: center;
+  justify-self: center;
 }
 
 .table-header {
@@ -36,7 +104,6 @@ h3.bold-call {
   box-sizing: border-box;
   background-color: #2f4753;
   width: 100vw;
-
   margin: 24px 0;
 }
 
