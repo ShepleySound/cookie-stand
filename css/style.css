@@ -70,6 +70,12 @@ nav a:hover {
   background-color: #44647560;
 }
 
+a:link,
+a:visited,
+a:hover {
+  text-decoration: none;
+}
+
 footer {
   box-sizing: border-box;
   display: flex;
