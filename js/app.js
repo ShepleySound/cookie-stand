@@ -150,7 +150,6 @@ const storesArray = [seattleStore, tokyoStore, dubaiStore, parisStore, limaStore
 populateTableHeaders('sales-table', 6, 19);
 populateTableHeaders('staff-table', 6, 19, false);
 
-
 function drawTables(storesArray) {
   const salesTableBody = document.querySelector('.sales-table tbody');
   const staffTableBody = document.querySelector('.staff-table tbody');
@@ -158,13 +157,20 @@ function drawTables(storesArray) {
   salesTableBody.innerHTML = '';
   staffTableBody.innerHTML = '';
   salesTableFoot.innerHTML = '';
-  storesArray.forEach(store => {
+  storesArray.forEach((store) => {
     store.simulateSales();
     store.drawSalesRow();
     store.drawStaffRow();
   });
   drawFooterTotals(calculateHourlyTotals(storesArray));
+}
 
+function drawTablesSpinner(storesArray) {
+  for (let i = 0; i < 10; i++) {
+    setTimeout(() => {
+      drawTables(storesArray);
+    }, 40 * i);
+  }
 }
 
 function timeTranslate(hourInt) {
@@ -252,7 +258,7 @@ function handleSubmit(e) {
     }
     storesArray.push(new Store(location.value, minCustomers.value, maxCustomers.value, avgCookiesPerCustomer.value));
   }
-  drawTables(storesArray);
+  drawTablesSpinner(storesArray);
 
   form.reset();
 }
@@ -283,12 +289,13 @@ function warningBox(formInput, warningString = 'Warning!') {
 }
 const simulateSalesButton = document.querySelector('.simulate-sales-button');
 const storeForm = document.querySelector('#store-form');
-drawTables(storesArray);
-storeForm.addEventListener('submit', handleSubmit);
-simulateSalesButton.addEventListener('click', () => {
-  drawTables(storesArray);
-});
+drawTablesSpinner(storesArray);
 
+storeForm.addEventListener('submit', handleSubmit);
+
+simulateSalesButton.addEventListener('click', () => {
+  drawTablesSpinner(storesArray);
+});
 
 // Potential helper function
 // function getTotalTimeRange(stores) {
