@@ -1,5 +1,3 @@
-.bold-call-container {}
-
 h2.bold-call {
   font-size: 3rem;
 }
@@ -115,10 +113,12 @@ input#average-cookies {
 }
 
 .hourly-table {
-  text-align: left;
+  text-align: center;
   border-spacing: 12px;
   border-collapse: collapse;
-  width: 100vw
+  width: 100vw;
+  table-layout: fixed;
+  box-sizing: border-box;
 }
 
 .hourly-table * {
@@ -130,9 +130,13 @@ tbody :nth-child(odd).store-row {
 }
 
 .row-head {
-  border-right: 4px solid #cccccc;
+  box-sizing: border-box;
+  border-right: 1px solid #cccccc;
   width: 10rem;
   text-align: end;
+  overflow: hidden;
+  padding-left: 20px;
+  padding-right: 2px;
 }
 
 .hourly-table th {
@@ -150,6 +154,14 @@ table tfoot tr {
 
 .staff-data.changed {
   background-color: #ffffff1c;
+}
+
+col.locations {
+  width: max-content;
+}
+
+col.hours {
+  width: 1fr;
 }
 
 .warning-box {
