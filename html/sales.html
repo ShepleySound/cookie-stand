@@ -25,15 +25,52 @@
       </nav>
     </header>
     <main>
-      <section class="bold-call-container">
-        <h2 class="bold-call">Need sales data?</h2>
-        <h3 class="bold-call">Look no further.</h3>
-      </section>
+      <div class="upper-section">
+
+        <section class="bold-call-container">
+          <h2 class="bold-call">Need sales data?</h2>
+          <h3 class="bold-call">Look no further.</h3> 
+          <button type="button" class="simulate-sales-button">Simulate Sales</button> 
+        </section>
+
+        <section class="store-form-container">
+          <h2 class="store-form-header">Add/Update Store</h2>
+          <form class="store-form" id="store-form">
+            <label for="location-name">Location Name
+              <input type="text" name="location" id="location" minlength="1" maxlength="40">
+            </label>
+            <section class="new-sales-data">
+              <h3>Sales data</h3>
+              <fieldset>
+                <legend>Customers Per Hour</legend>
+                <section class="min-max-inputs">
+                  <label>Min
+                    <input type="number" name="minCustomers" id="min-customers" min="0" step="1">
+                  </label>
+                  <label>Max
+                    <input type="number" name="maxCustomers" id="max-customers" min="0" step="1">
+                  </label>
+                </section>
+              </fieldset>
+              <label>Average Cookies Per Customer
+                <input type="number" name="averageCookies" id="average-cookies" min="0" step=".1">
+              </label>
+            </section>
+            <button type="submit" class="submit-form-button">Submit</button>
+          </form>
+        </section>
+
+      </div>
       <section class="sales-table-container hourly-table-container">
         <h2 class="sales-header table-header">
           Cookies Sold Per Hour
         </h2>
           <table class="sales-table hourly-table">
+            <colgroup>
+              <col class="locations">
+              <col span="14" class="hours">
+              <col class="totals">
+            </colgroup>
             <thead>
               <tr class="table-headers"></tr>
             </thead>
@@ -51,6 +88,12 @@
           Staff Required Per Hour
         </h2>
         <table class="staff-table hourly-table">
+          <colgroup>
+            <col class="locations">
+            <col span="14" class="hours">
+            <col>
+
+          </colgroup>
           <thead>
             <tr class="table-headers"></tr>
           </thead>

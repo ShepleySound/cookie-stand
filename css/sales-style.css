@@ -1,9 +1,3 @@
-.bold-call-container {
-  padding: 120px 60px;
-}
-
-.bold-call {}
-
 h2.bold-call {
   font-size: 3rem;
 }
@@ -12,10 +6,101 @@ h3.bold-call {
   font-size: 2rem;
 }
 
+.upper-section {
+  display: flex;
+  align-items: center;
+  margin: 60px;
+}
+
+.simulate-sales-button {
+  margin-top: 12px;
+  border: none;
+  background-color: #c0b9b74d;
+  color: #d8d6d6;
+  padding: 24px;
+  border-radius: 10px;
+  font-size: 1.5rem;
+}
+
+.store-form-container {
+  margin-left: 60px;
+  padding: 40px;
+  background-color: #c0c0c013;
+  border-radius: 18px;
+  border: 1px solid #c9c9c91a;
+}
+
+.store-form-header {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.store-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.store-form>* {
+  margin: 6px 0px;
+}
+
+.store-form label {
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin: 6px 0px;
+  max-width: 10em;
+  position: relative;
+}
+
+.store-form input {
+  background-color: #8b99a1;
+  border: 1px solid #5a5a5a;
+  border-radius: 4px;
+}
+
+.min-max-inputs {
+  display: flex;
+  align-items: center;
+}
+
+.min-max-inputs>label {
+  margin-right: 12px;
+}
+
+input#min-customers,
+input#max-customers {
+  width: 3em;
+}
+
+input#average-cookies {
+  width: 4em;
+}
+
+.new-sales-data {
+  margin-top: 6px;
+}
+
+.new-sales-data h3 {
+  font-size: 1.2rem;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.submit-form-button {
+  border: none;
+  background-color: #c0b9b74d;
+  color: #d8d6d6;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  align-self: center;
+  justify-self: center;
+}
+
 .table-header {
   font-size: 1.2rem;
   font-weight: 600;
-  /* text-align: center; */
   padding: 36px 0px 12px 36px;
   background-color: #0000000c;
 }
@@ -24,16 +109,16 @@ h3.bold-call {
   box-sizing: border-box;
   background-color: #2f4753;
   width: 100vw;
-  /* border-radius: 12px; */
-  /* margin-top: 24px; */
   margin: 24px 0;
 }
 
 .hourly-table {
-  text-align: left;
+  text-align: center;
   border-spacing: 12px;
   border-collapse: collapse;
-  width: 100vw
+  width: 100vw;
+  table-layout: fixed;
+  box-sizing: border-box;
 }
 
 .hourly-table * {
@@ -45,9 +130,13 @@ tbody :nth-child(odd).store-row {
 }
 
 .row-head {
-  border-right: 4px solid #cccccc;
+  box-sizing: border-box;
+  border-right: 1px solid #cccccc;
   width: 10rem;
   text-align: end;
+  overflow: hidden;
+  padding-left: 20px;
+  padding-right: 2px;
 }
 
 .hourly-table th {
@@ -65,4 +154,32 @@ table tfoot tr {
 
 .staff-data.changed {
   background-color: #ffffff1c;
+}
+
+col.locations {
+  width: max-content;
+}
+
+col.hours {
+  width: 1fr;
+}
+
+.warning-box {
+  font-size: .8em;
+  position: absolute;
+  padding: 8px;
+  bottom: 1.2em;
+  background-color: #ce5959dc;
+  color: #222222;
+  border-radius: 4px;
+  transition: opacity 500ms;
+  opacity: 0%;
+}
+
+.displayed {
+  opacity: 100%
+}
+
+.hidden {
+  opacity: 0%;
 }
