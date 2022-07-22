@@ -214,7 +214,6 @@ function storeByLocation(location, storesArray) {
   }
 }
 
-
 function handleSubmit(e) {
   e.preventDefault();
   const form = e.target;
@@ -283,10 +282,13 @@ function warningBox(formInput, warningString = 'Warning!') {
     }, 3000);
   }
 }
-
+const simulateSalesButton = document.querySelector('.simulate-sales-button');
 const storeForm = document.querySelector('#store-form');
 drawTables(storesArray);
 storeForm.addEventListener('submit', handleSubmit);
+simulateSalesButton.addEventListener('click', () => {
+  drawTables(storesArray);
+});
 
 
 // Potential helper function
