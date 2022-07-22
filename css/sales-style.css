@@ -1,13 +1,28 @@
 h2.bold-call {
   font-size: 3rem;
+  animation: fadeIn ease-in-out 500ms;
 }
 
 h3.bold-call {
   font-size: 2rem;
+  animation: fadeIn ease-in-out 1000ms;
+
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0%
+  }
+
+
+  100% {
+    opacity: 100%
+  }
 }
 
 .upper-section {
   display: flex;
+  justify-content: center;
   align-items: center;
   margin: 60px;
 }
@@ -17,6 +32,8 @@ h3.bold-call {
   padding: 24px;
   font-size: 1.5rem;
 }
+
+
 
 .store-form-container {
   margin-left: 60px;
@@ -73,6 +90,15 @@ input#average-cookies {
   width: 4em;
 }
 
+input {
+  line-height: 1.1rem;
+  font-size: 1.0rem;
+}
+
+input:focus {
+  outline: none;
+}
+
 .new-sales-data {
   margin-top: 6px;
 }
@@ -127,7 +153,7 @@ input#average-cookies {
   text-align: center;
   border-spacing: 12px;
   border-collapse: collapse;
-  width: 100vw;
+  width: 95vw;
   table-layout: fixed;
   box-sizing: border-box;
 }
