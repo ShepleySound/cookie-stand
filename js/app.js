@@ -53,14 +53,14 @@ Store.prototype.drawSalesRow = function() {
   storeRow.classList.add('store-row');
 
   const cityHead = document.createElement('th');
-  cityHead.classList.add(`${this.city.toLowerCase()}`, 'city-head', 'row-head');
+  cityHead.classList.add('city-head', 'row-head');
   cityHead.scope = 'row';
   cityHead.innerText = this.city;
   storeRow.append(cityHead);
 
   this.hourlyCustomersArray.forEach(customers => {
     const saleCell = document.createElement('td');
-    saleCell.classList.add(`${this.city.toLowerCase()}`, 'sale-data');
+    saleCell.classList.add('sale-data');
     saleCell.innerText = Store.calculateCookieSales(customers, this.avgCookiesPerCustomer);
     storeRow.append(saleCell);
   });
@@ -103,7 +103,6 @@ Store.prototype.drawStaffRow = function() {
 function calculateHourlyTotals(storesArray) {
   let hourTotal = [];
   storesArray.forEach(store => {
-    console.log(store.city);
     store.hourlyCustomersArray.forEach((customerCount, i) => {
       if (!hourTotal[i]) {
         hourTotal[i] = 0;
@@ -151,7 +150,6 @@ const storesArray = [seattleStore, tokyoStore, dubaiStore, parisStore, limaStore
 populateTableHeaders('sales-table', 6, 19);
 populateTableHeaders('staff-table', 6, 19, false);
 
-
 function drawTables(storesArray) {
   const salesTableBody = document.querySelector('.sales-table tbody');
   const staffTableBody = document.querySelector('.staff-table tbody');
@@ -159,13 +157,20 @@ function drawTables(storesArray) {
   salesTableBody.innerHTML = '';
   staffTableBody.innerHTML = '';
   salesTableFoot.innerHTML = '';
-  storesArray.forEach(store => {
+  storesArray.forEach((store) => {
     store.simulateSales();
     store.drawSalesRow();
     store.drawStaffRow();
   });
   drawFooterTotals(calculateHourlyTotals(storesArray));
+}
 
+function drawTablesSpinner(storesArray) {
+  for (let i = 0; i < 10; i++) {
+    setTimeout(() => {
+      drawTables(storesArray);
+    }, 40 * i);
+  }
 }
 
 function timeTranslate(hourInt) {
@@ -214,7 +219,6 @@ function storeByLocation(location, storesArray) {
   }
 }
 
-
 function handleSubmit(e) {
   e.preventDefault();
   const form = e.target;
@@ -236,7 +240,7 @@ function handleSubmit(e) {
       warningBox(location, 'Please enter a location name.');
       return;
     }
-    if (minCustomers.value > maxCustomers.value) {
+    if (parseInt(minCustomers.value) > parseInt(maxCustomers.value)) {
       warningBox(minCustomers, 'Min must be less than Max.');
       return;
     }
@@ -254,7 +258,7 @@ function handleSubmit(e) {
     }
     storesArray.push(new Store(location.value, minCustomers.value, maxCustomers.value, avgCookiesPerCustomer.value));
   }
-  drawTables(storesArray);
+  drawTablesSpinner(storesArray);
 
   form.reset();
 }
@@ -283,11 +287,15 @@ function warningBox(formInput, warningString = 'Warning!') {
     }, 3000);
   }
 }
-
+const simulateSalesButton = document.querySelector('.simulate-sales-button');
 const storeForm = document.querySelector('#store-form');
-drawTables(storesArray);
+drawTablesSpinner(storesArray);
+
 storeForm.addEventListener('submit', handleSubmit);
 
+simulateSalesButton.addEventListener('click', () => {
+  drawTablesSpinner(storesArray);
+});
 
 // Potential helper function
 // function getTotalTimeRange(stores) {

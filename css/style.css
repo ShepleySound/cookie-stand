@@ -50,12 +50,13 @@ header {
   margin-right: 60px;
 }
 
-.header-navbar a {
+nav a {
   text-decoration: none;
   padding: 10px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-color 250ms
 }
 
 nav a:link {
@@ -68,6 +69,12 @@ nav a:visited {
 
 nav a:hover {
   background-color: #44647560;
+}
+
+a:link,
+a:visited,
+a:hover {
+  text-decoration: none;
 }
 
 footer {

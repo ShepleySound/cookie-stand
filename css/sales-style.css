@@ -1,26 +1,39 @@
 h2.bold-call {
   font-size: 3rem;
+  animation: fadeIn ease-in-out 500ms;
 }
 
 h3.bold-call {
   font-size: 2rem;
+  animation: fadeIn ease-in-out 1000ms;
+
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0%
+  }
+
+
+  100% {
+    opacity: 100%
+  }
 }
 
 .upper-section {
   display: flex;
+  justify-content: center;
   align-items: center;
   margin: 60px;
 }
 
 .simulate-sales-button {
   margin-top: 12px;
-  border: none;
-  background-color: #c0b9b74d;
-  color: #d8d6d6;
   padding: 24px;
-  border-radius: 10px;
   font-size: 1.5rem;
 }
+
+
 
 .store-form-container {
   margin-left: 60px;
@@ -70,11 +83,20 @@ h3.bold-call {
 
 input#min-customers,
 input#max-customers {
-  width: 3em;
+  width: 4em;
 }
 
 input#average-cookies {
   width: 4em;
+}
+
+input {
+  line-height: 1.1rem;
+  font-size: 1.0rem;
+}
+
+input:focus {
+  outline: none;
 }
 
 .new-sales-data {
@@ -88,14 +110,29 @@ input#average-cookies {
 }
 
 .submit-form-button {
-  border: none;
-  background-color: #c0b9b74d;
-  color: #d8d6d6;
   padding: 12px 24px;
-  border-radius: 10px;
   font-size: 1.2rem;
   align-self: center;
   justify-self: center;
+}
+
+.submit-form-button,
+.simulate-sales-button {
+  transition: background-color 250ms;
+  border: none;
+  background-color: #c0b9b74d;
+  color: #d8d6d6;
+  border-radius: 10px;
+}
+
+.submit-form-button:hover,
+.simulate-sales-button:hover {
+  background-color: #576e854d;
+}
+
+.submit-form-button:active,
+.simulate-sales-button:active {
+  background-color: #c77c724d;
 }
 
 .table-header {
@@ -116,7 +153,7 @@ input#average-cookies {
   text-align: center;
   border-spacing: 12px;
   border-collapse: collapse;
-  width: 100vw;
+  width: 95vw;
   table-layout: fixed;
   box-sizing: border-box;
 }
