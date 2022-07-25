@@ -170,10 +170,10 @@ tbody :nth-child(odd).store-row {
   box-sizing: border-box;
   border-right: 1px solid #cccccc;
   width: 10rem;
+  min-width: 3em;
   text-align: end;
   overflow: hidden;
-  padding-left: 20px;
-  padding-right: 2px;
+  padding-right: 6px;
 }
 
 .hourly-table th {
@@ -199,6 +199,7 @@ col.locations {
 
 col.hours {
   width: 1fr;
+  min-width: 4em;
 }
 
 .warning-box {
