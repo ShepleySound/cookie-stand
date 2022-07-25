@@ -1,5 +1,15 @@
 'use strict';
 
+const cache = {
+  salesTableBody: document.querySelector('.sales-table tbody'),
+  salesTableFooter: document.querySelector('.sales-table tfoot'),
+  staffTableBody: document.querySelector('.staff-table tbody'),
+  simulateSalesButton: document.querySelector('.simulate-sales-button'),
+  storeForm: document.querySelector('#store-form'),
+
+
+}
+
 function Store(city, minCustomers, maxCustomers, avgCookiesPerCustomer, openingHour = 6, closingHour = 19) {
   this.city = city;
   this.minCustomers = minCustomers;
@@ -48,7 +58,6 @@ Store.calculateStaff = function(customerCount) {
 
 // Draws the table with cities as rows.
 Store.prototype.drawSalesRow = function() {
-  const tableBody = document.querySelector('.sales-table tbody');
   const storeRow = document.createElement('tr');
   storeRow.classList.add('store-row');
 
@@ -69,11 +78,10 @@ Store.prototype.drawSalesRow = function() {
   totalCell.classList.add('total-data');
   totalCell.innerText = Store.calculateCookieSales(this.totalCustomers, this.avgCookiesPerCustomer);
   storeRow.append(totalCell);
-  tableBody.append(storeRow);
+  cache.salesTableBody.append(storeRow);
 };
 
 Store.prototype.drawStaffRow = function() {
-  const tableBody = document.querySelector('.staff-table tbody');
   const storeRow = document.createElement('tr');
   storeRow.classList.add('store-row');
 
@@ -97,7 +105,7 @@ Store.prototype.drawStaffRow = function() {
     }
     storeRow.append(staffCell);
   });
-  tableBody.append(storeRow);
+  cache.staffTableBody.append(storeRow);
 };
 
 function calculateHourlyTotals(storesArray) {
@@ -114,7 +122,6 @@ function calculateHourlyTotals(storesArray) {
 }
 
 function drawFooterTotals(totalsArray) {
-  const tablefooter = document.querySelector('.sales-table tfoot');
   const totalRow = document.createElement('tr');
   totalRow.classList.add('total-row');
 
@@ -137,7 +144,7 @@ function drawFooterTotals(totalsArray) {
   sumTotalCell.classList.add('total-data', 'sum-total');
   sumTotalCell.innerText = sumTotalData;
   totalRow.append(sumTotalCell);
-  tablefooter.append(totalRow);
+  cache.salesTableFooter.append(totalRow);
 }
 
 const seattleStore = new Store('Seattle', 23, 65, 6.3);
@@ -151,12 +158,9 @@ populateTableHeaders('sales-table', 6, 19);
 populateTableHeaders('staff-table', 6, 19, false);
 
 function drawTables(storesArray) {
-  const salesTableBody = document.querySelector('.sales-table tbody');
-  const staffTableBody = document.querySelector('.staff-table tbody');
-  const salesTableFoot = document.querySelector('.sales-table tfoot');
-  salesTableBody.innerHTML = '';
-  staffTableBody.innerHTML = '';
-  salesTableFoot.innerHTML = '';
+  cache.salesTableBody.innerHTML = '';
+  cache.staffTableBody.innerHTML = '';
+  cache.salesTableFooter.innerHTML = '';
   storesArray.forEach((store) => {
     store.simulateSales();
     store.drawSalesRow();
@@ -287,13 +291,11 @@ function warningBox(formInput, warningString = 'Warning!') {
     }, 3000);
   }
 }
-const simulateSalesButton = document.querySelector('.simulate-sales-button');
-const storeForm = document.querySelector('#store-form');
 drawTablesSpinner(storesArray);
 
-storeForm.addEventListener('submit', handleSubmit);
+cache.storeForm.addEventListener('submit', handleSubmit);
 
-simulateSalesButton.addEventListener('click', () => {
+cache.simulateSalesButton.addEventListener('click', () => {
   drawTablesSpinner(storesArray);
 });
 
