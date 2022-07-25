@@ -1,30 +1,51 @@
 'use strict';
 
-function Store(city, minCustomers, maxCustomers, avgCookiesPerCustomer, openingHour = 6, closingHour = 19) {
-  this.city = city;
+// Holds nodes to prevent querying the DOM unnecessarily.
+const cache = {
+  salesTableBody: document.querySelector('.sales-table tbody'),
+  salesTableFooter: document.querySelector('.sales-table tfoot'),
+  staffTableBody: document.querySelector('.staff-table tbody'),
+  simulateSalesButton: document.querySelector('.simulate-sales-button'),
+  storeForm: document.querySelector('#store-form'),
+}
+// Initialize array with default Stores objects.
+const storesArray = [
+  new Store('Seattle', 23, 65, 6.3),
+  new Store('Tokyo', 3, 24, 1.2),
+  new Store('Dubai', 11, 38, 3.7),
+  new Store('Paris', 20, 38, 2.3),
+  new Store('Lima', 2, 16, 4.6)
+];
+populateColumnHeaders('sales-table', 6, 19);
+populateColumnHeaders('staff-table', 6, 19, false);
+
+// Constructor for Store objects.
+function Store(location, minCustomers, maxCustomers, avgCookiesPerCustomer, openingHour = 6, closingHour = 19) {
+  this.location = location;
   this.minCustomers = minCustomers;
   this.maxCustomers = maxCustomers;
   this.avgCookiesPerCustomer = avgCookiesPerCustomer;
   this.openingHour = openingHour;
   this.closingHour = closingHour;
-  // this.hourlySales = {}; // Will use hours as keys to link sales to times.
   this.hourlyCustomersArray = [];
   this.totalCustomers = 0;
   this.controlCurve = [0.5, 0.75, 1.0, 0.6, 0.8, 1.0, 0.7, 0.4, 0.6, 0.9, 0.7, 0.5, 0.3, 0.4, 0.6];
 }
 
-Store.prototype.randomCustomerCount = function(min, max) {
-  // Inclusive random integer. Algorithm from MDN Math.random() docs.
+// Inclusive random integer. Algorithm from MDN Math.random() docs.
+Store.prototype.randomInclusiveInt = function(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
+// Refresh object's sales array and total sum property. 
+// Calculate new data using randomInclusiveInt.
 Store.prototype.simulateSales = function() {
   this.hourlyCustomersArray = [];
   this.totalCustomers = 0;
   for (let i = this.openingHour; i <= this.closingHour; i++) {
-    const customerCount = this.randomCustomerCount(
+    const customerCount = this.randomInclusiveInt(
       this.minCustomers,
       this.maxCustomers * this.controlCurve[i - this.openingHour]);
     // this.hourlySales[i] = cookiesSold; // Not in use yet.
@@ -33,6 +54,7 @@ Store.prototype.simulateSales = function() {
   }
 };
 
+// Return the data to be displayed in sales table.
 Store.calculateCookieSales = function(customerCount, avgCookiesPerCustomer) {
   return Math.ceil(customerCount * avgCookiesPerCustomer);
 };
@@ -46,17 +68,16 @@ Store.calculateStaff = function(customerCount) {
   return staffNeeded;
 };
 
-// Draws the table with cities as rows.
+// Draws the object's data onto the sales table.
 Store.prototype.drawSalesRow = function() {
-  const tableBody = document.querySelector('.sales-table tbody');
   const storeRow = document.createElement('tr');
   storeRow.classList.add('store-row');
 
-  const cityHead = document.createElement('th');
-  cityHead.classList.add('city-head', 'row-head');
-  cityHead.scope = 'row';
-  cityHead.innerText = this.city;
-  storeRow.append(cityHead);
+  const locationHead = document.createElement('th');
+  locationHead.classList.add('location-head', 'row-head');
+  locationHead.scope = 'row';
+  locationHead.innerText = this.location;
+  storeRow.append(locationHead);
 
   this.hourlyCustomersArray.forEach(customers => {
     const saleCell = document.createElement('td');
@@ -69,19 +90,19 @@ Store.prototype.drawSalesRow = function() {
   totalCell.classList.add('total-data');
   totalCell.innerText = Store.calculateCookieSales(this.totalCustomers, this.avgCookiesPerCustomer);
   storeRow.append(totalCell);
-  tableBody.append(storeRow);
+  cache.salesTableBody.append(storeRow);
 };
 
+// Draws the object's data onto the staff table.
 Store.prototype.drawStaffRow = function() {
-  const tableBody = document.querySelector('.staff-table tbody');
   const storeRow = document.createElement('tr');
   storeRow.classList.add('store-row');
 
-  const cityHead = document.createElement('th');
-  cityHead.classList.add('city-head', 'row-head');
-  cityHead.scope = 'row';
-  cityHead.innerText = this.city;
-  storeRow.append(cityHead);
+  const locationHead = document.createElement('th');
+  locationHead.classList.add('location-head', 'row-head');
+  locationHead.scope = 'row';
+  locationHead.innerText = this.location;
+  storeRow.append(locationHead);
 
   this.hourlyCustomersArray.forEach((customers, i) => {
     const staffCell = document.createElement('td');
@@ -97,9 +118,10 @@ Store.prototype.drawStaffRow = function() {
     }
     storeRow.append(staffCell);
   });
-  tableBody.append(storeRow);
+  cache.staffTableBody.append(storeRow);
 };
 
+// Returns an array with totals for each hour across all given stores.
 function calculateHourlyTotals(storesArray) {
   let hourTotal = [];
   storesArray.forEach(store => {
@@ -113,8 +135,8 @@ function calculateHourlyTotals(storesArray) {
   return hourTotal;
 }
 
+// Draws the totals footer to the sales array.
 function drawFooterTotals(totalsArray) {
-  const tablefooter = document.querySelector('.sales-table tfoot');
   const totalRow = document.createElement('tr');
   totalRow.classList.add('total-row');
 
@@ -133,30 +155,18 @@ function drawFooterTotals(totalsArray) {
     totalCell.innerText = totalData;
     totalRow.append(totalCell);
   });
+
   const sumTotalCell = document.createElement('td');
   sumTotalCell.classList.add('total-data', 'sum-total');
   sumTotalCell.innerText = sumTotalData;
   totalRow.append(sumTotalCell);
-  tablefooter.append(totalRow);
+  cache.salesTableFooter.append(totalRow);
 }
-
-const seattleStore = new Store('Seattle', 23, 65, 6.3);
-const tokyoStore = new Store('Tokyo', 3, 24, 1.2);
-const dubaiStore = new Store('Dubai', 11, 38, 3.7);
-const parisStore = new Store('Paris', 20, 38, 2.3);
-const limaStore = new Store('Lima', 2, 16, 4.6);
-
-const storesArray = [seattleStore, tokyoStore, dubaiStore, parisStore, limaStore];
-populateTableHeaders('sales-table', 6, 19);
-populateTableHeaders('staff-table', 6, 19, false);
-
+// Empty tables, generate new data, and redraw tables to the page.
 function drawTables(storesArray) {
-  const salesTableBody = document.querySelector('.sales-table tbody');
-  const staffTableBody = document.querySelector('.staff-table tbody');
-  const salesTableFoot = document.querySelector('.sales-table tfoot');
-  salesTableBody.innerHTML = '';
-  staffTableBody.innerHTML = '';
-  salesTableFoot.innerHTML = '';
+  cache.salesTableBody.innerHTML = '';
+  cache.staffTableBody.innerHTML = '';
+  cache.salesTableFooter.innerHTML = '';
   storesArray.forEach((store) => {
     store.simulateSales();
     store.drawSalesRow();
@@ -165,6 +175,7 @@ function drawTables(storesArray) {
   drawFooterTotals(calculateHourlyTotals(storesArray));
 }
 
+// "Spins" the data on redraw to achieve a "calculating" effect.
 function drawTablesSpinner(storesArray) {
   for (let i = 0; i < 10; i++) {
     setTimeout(() => {
@@ -173,6 +184,7 @@ function drawTablesSpinner(storesArray) {
   }
 }
 
+// Translates 24hr time to 12hr time with AM/PM indicators.
 function timeTranslate(hourInt) {
   hourInt = parseInt(hourInt);
   if (isNaN(hourInt)) {
@@ -188,9 +200,10 @@ function timeTranslate(hourInt) {
   }
 }
 
-function populateTableHeaders(tableClass, minTime, maxTime, hasTotalColumn = true) {
+// Populates column headers with appropriate timeslots and a total column.
+function populateColumnHeaders(tableClass, minTime, maxTime, hasTotalColumn = true) {
   const tableHeaders = document.querySelector(`.${tableClass} .table-headers`);
-  // Create blank column header cell above city names.
+  // Create blank column header cell above location names.
   const blankHead = document.createElement('th');
   blankHead.classList.add('blank-head', 'column-head');
   blankHead.innerText = '';
@@ -211,9 +224,10 @@ function populateTableHeaders(tableClass, minTime, maxTime, hasTotalColumn = tru
   }
 }
 
+// Gets a Store object from the given array using the location property.
 function storeByLocation(location, storesArray) {
   for (let i = 0; i < storesArray.length; i++) {
-    if (location.toLowerCase() === storesArray[i].city.toLowerCase()) {
+    if (location.toLowerCase() === storesArray[i].location.toLowerCase()) {
       return storesArray[i];
     }
   }
@@ -287,13 +301,11 @@ function warningBox(formInput, warningString = 'Warning!') {
     }, 3000);
   }
 }
-const simulateSalesButton = document.querySelector('.simulate-sales-button');
-const storeForm = document.querySelector('#store-form');
 drawTablesSpinner(storesArray);
 
-storeForm.addEventListener('submit', handleSubmit);
+cache.storeForm.addEventListener('submit', handleSubmit);
 
-simulateSalesButton.addEventListener('click', () => {
+cache.simulateSalesButton.addEventListener('click', () => {
   drawTablesSpinner(storesArray);
 });
 
