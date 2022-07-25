@@ -112,11 +112,11 @@ h3.bold-call {
   animation: flipOver 1000ms;
   transition: opacity 500ms;
   cursor: default;
-  user-select: none;
+  position: relative;
 }
 
-.location-card:hover {
-  opacity: 80%;
+.location-card * {
+  transition: opacity 500ms;
 }
 
 @keyframes flipOver {
@@ -136,10 +136,30 @@ h3.bold-call {
   height: 200px;
   object-fit: cover;
   filter: saturate(.8);
+  user-select: none;
 }
 
 .location-card h3 {
   font-size: 1.2rem;
   padding-top: 8px;
   color: #121212;
+  user-select: none;
+}
+
+.location-card-fliptext {
+  position: absolute;
+  opacity: 0;
+  top: 12px;
+  left: 12px;
+}
+
+.location-card:hover img,
+.location-card:hover h3 {
+  opacity: 30%;
+}
+
+.location-card:hover .location-card-fliptext {
+  opacity: 100%;
+  color: #242424;
+  display: block;
 }
