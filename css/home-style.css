@@ -78,6 +78,11 @@ h3.bold-call {
   margin-bottom: 12px;
 }
 
+.info-section p {
+  font-family: 'Noto Serif', serif;
+  font-weight: 400;
+}
+
 .locations-information {
   display: flex;
   flex-direction: column;
