@@ -13,9 +13,11 @@ main {
 }
 
 img.headline-image {
-  max-width: 100vw;
-  min-height: 180px;
+  width: 100vw;
+  /* min-height: 180px; */
+  max-height: 500px;
   opacity: 30%;
+  object-fit: cover;
 }
 
 .bold-call-container {
